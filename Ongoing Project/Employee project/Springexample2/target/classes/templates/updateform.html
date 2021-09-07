@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html  lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel = "stylesheet" th:href="@{/css/updateform.css}"/>
+<link rel="stylesheet" th:href="@{/css/navbar.css}">
+</head>
+<body>
+ <div class="navbar">
+	<a href="home">View employees</a>
+	<a href="newempform">Add Employees</a>
+	<a href="/employees">Admin Details</a>
+	
+    </div>    
+    
+<div class="container">
+<form action="#" th:action="@{/save}" th:object="${employee}"
+			method="POST">
+			
+			<!-- Add hidden form field to handle update -->
+			<input type="hidden" th:field="*{id}" />
+			
+			<label>First name</label>
+			<input type="text" th:field="*{firstName}" >
+				
+				<label>Last name</label>
+				<input type="text" th:field="*{lastName}" >
+				
+				<label>Email</label>
+				<input type="text" th:field="*{email}" >
+				
+				<label>Designation</label>
+				<input type="text" th:field="*{designation}" >
+				
+				<label>Salary</label>
+				<input type="text" th:field="*{salary}" >
+				
+				<button type="submit" class="form-control btn" > Update Employee</button>
+		</form>
+		</div>
+</body>
+</html>

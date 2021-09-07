@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+ integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<title>Insert title here</title>
+<link rel = "stylesheet" th:href="@{/css/index.css}"/>
+<link rel="stylesheet" th:href="@{/css/navbar.css}">
+</head>
+<body>
+
+<!-- 
+<a th:href=@{home} class="btn btn-primary">view employees</a>
+<a th:href=@{newempform} class="btn btn-primary">add employees</a>
+<a href="/employees" class="btn btn-primary">ADMIN DETAILS</a>
+ -->
+ 
+  <div class="navbar">
+	<a href="home">View employees</a>
+	<a href="newempform">Add Employees</a>
+	<a href="/employees">Admin Details</a>
+	
+    </div>    
+    
+    <h1>Welcome</h1>  
+    <h2>Employee Management Portal</h2> 
+  
+
+</body>
+</html>
