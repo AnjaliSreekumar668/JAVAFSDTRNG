@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+ integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<title>Insert title here</title>
+
+<link rel = "stylesheet" th:href="@{/css/employees.css}"/>
+<link rel = "stylesheet" th:href="@{/css/navbar.css}"/>
+
+</head>
+<body>
+
+<div class="navbar">
+	<a href="home">View employees</a>
+	<a href="newempform">Add Employees</a>
+	<a href="/employees">Admin Details</a>
+	
+    </div>   
+
+<table class="center">
+			<thead>
+				<tr>
+					<th>
+					
+							ID
+					</th>
+					<th>
+
+							NAME
+					</th>
+					<th>
+
+							EMAIL				</th>
+				
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="col : ${employees}">
+					<td th:text="${col.id}"></td>
+					<td th:text="${col.name}"></td>
+					<td th:text="${col.email}"></td>
+					
+				</tr>
+			</tbody>
+		</table>
+		<!--  <a th:href=@{/newempform} class="btn btn-primary">add Employees</a>  -->
+		
+		
+</body>
+</html>
