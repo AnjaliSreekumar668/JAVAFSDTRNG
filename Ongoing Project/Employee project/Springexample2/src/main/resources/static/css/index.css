@@ -1,0 +1,31 @@
+body
+{
+	background-image: url("/images/image1.jpg");
+	background-repeat: no-repeat;
+	background-size: 2700px 1200px;
+	
+}
+
+
+ h1 {
+  color: #3679b0;
+  position: absolute;
+  right: 1050px;
+  top: 250px;
+  font-size: 55px;
+  font-family: "TLucida Console", Times, serif;
+  font-weight: bold;
+}
+
+
+h2 {
+  color: #66004d;
+  position: absolute;
+  right: 750px;
+
+  top: 450px;
+  text-align: justify;
+  font-size: 60px;
+   font-family: Arial, Helvetica, sans-serif;
+   font-weight: bold;
+}
