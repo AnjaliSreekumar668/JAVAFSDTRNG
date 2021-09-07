@@ -1,0 +1,103 @@
+body
+{
+	background-image: url("/images/image2.jpg");
+	background-repeat: no-repeat;
+	background-size: 2700px 1200px;
+	
+}
+
+
+
+
+h1
+{
+    color : #000000;
+    text-align : center;
+    font-family: "SIMPSON";
+    	top: 90px;
+    		position: absolute;
+    	right: 250px;
+	left:1000px;
+}
+
+
+.container {
+	background-color : #6666cc;
+	border-radius: 5px;
+	box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+	overflow: hidden;
+	max-width: 100%;
+	position: absolute;
+	right: 200px;
+	left:1300px;
+	width: 450px;
+	max-width: 100%;
+	top: 200px;
+} 
+.form {
+	padding: 30px 40px;	
+	top: 190px;
+}
+
+.form-control {
+	margin-bottom: 10px;
+	padding-bottom: 3px;
+	position: relative;
+}
+
+.form-control label {
+	display: inline-block;
+	margin-bottom: 5px;
+}
+
+.form-control input {
+	border: 2px solid #f0f0f0;
+	border-radius: 4px;
+	display: block;
+	font-family: inherit;
+	font-size: 14px;
+	padding: 10px;
+	width: 100%;
+	top: 190px;
+}
+
+.form-control select {
+	border: 2px solid #f0f0f0;
+	border-radius: 4px;
+	display: block;
+	font-family: inherit;
+	font-size: 14px;
+	padding: 10px;
+	width: 100%;
+}
+
+div.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+button[type=submit] {
+  width: 100%;
+  background-color :#000000;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button[type=submit]:hover {
+  background-color:#000000;
+}
