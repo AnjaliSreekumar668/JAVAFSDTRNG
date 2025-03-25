@@ -1,0 +1,529 @@
+openapi: 3.0.1
+info:
+  title: FinX Celta TM Dormancy Service
+  description: Service to conduct periodic check on accounts that are in-operative for 6/9/10/11/12 months and create/update cases in MSD for compliance team to follow up with customer and mark account as Dormant on 12th month to stop inbound/outbound payments to the account.
+  version: 11.0.0
+servers:
+  - url: https://finx-celta-api-dev.fincuro.in
+paths:
+  /v1/dormantCase/createDormantCase:
+    post:
+      tags:
+        - FinxDormancyCheckService
+      summary: FinxDormancyCheckService
+      description: FinxDormancyCheckService
+      operationId: FinxDormancyCheckService
+      requestBody:
+        $ref: "#/components/requestBodies/createDormantCaseRequest"
+      responses:
+        "200":
+          $ref: "#/components/responses/createDormantCaseResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "429":
+          $ref: "#/components/responses/TooManyRequests"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+  /v1/account/{accountNumber}/setAsDormant:
+    put:
+      tags:
+        - FinxDormancyCheckService
+      summary: UpdateSetAccountAsDormant
+      description: UpdateSetAccountAsDormant
+      operationId: UpdateSetAccountAsDormant
+      parameters:
+        - $ref: '#/components/parameters/accountNumber'
+      responses:
+        "200":
+          $ref: "#/components/responses/updateAccountAsDormantResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "429":
+          $ref: "#/components/responses/TooManyRequests"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+  /v1/dormantCase/updateDormantCaseCategoryAndStatus/{accountNumber}:
+    put:
+      tags:
+        - FinxDormancyCheckService
+      summary: UpdateDormantCaseCategoryAndStatus
+      description: UpdateDormantCaseCategoryAndStatus
+      operationId: UpdateDormantCaseCategoryAndStatus
+      parameters:
+        - $ref: '#/components/parameters/accountNumber'
+      requestBody:
+        $ref: "#/components/requestBodies/updateDormantCaseCategoryAndStatusRequest"
+      responses:
+        "200":
+          $ref: "#/components/responses/updateDormantCaseCategoryAndStatusResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "429":
+          $ref: "#/components/responses/TooManyRequests"
+        "500":
+          $ref: "#/components/responses/InternalServerError"        
+  /v1/dormantCase/getDormantCases:
+    post:
+      tags:
+        - FinxDormancyCheckService
+      summary: FetchDormantCases
+      description: FetchDormantCases
+      operationId: FetchDormantCases
+      requestBody:
+        $ref: "#/components/requestBodies/getDormantCasesRequest"
+      responses:
+        "200":
+          $ref: "#/components/responses/getDormantCasesResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "429":
+          $ref: "#/components/responses/TooManyRequests"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+  /v1/corporate/updateDocument/{customerId}:
+    put:
+      tags:
+        - FinxDormancyCheckService
+      summary: UpdateCorporateDocumentDoingReKYC
+      description: UpdateCorporateDocumentDoingReKYC
+      operationId: UpdateCorporateDocumentDoingReKYC
+      parameters:
+        - $ref: '#/components/parameters/customerId'
+      requestBody:
+        $ref: "#/components/requestBodies/updateCorporateDocumentDoingReKYCRequest"
+      responses:
+        "200":
+          $ref: "#/components/responses/updateCorporateDocumentDoingReKYCResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "429":
+          $ref: "#/components/responses/TooManyRequests"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+  /v1/account/{accountNumber}/setAsActive:
+    put:
+      tags:
+        - FinxDormancyCheckService
+      summary: UpdateDormantCaseCategory
+      description: UpdateDormantCaseCategory
+      operationId: UpdateDormantCaseCategory
+      parameters:
+        - $ref: '#/components/parameters/accountNumber'
+      responses:
+        "200":
+          $ref: "#/components/responses/updateDormantCaseCategoryResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "429":
+          $ref: "#/components/responses/TooManyRequests"
+        "500":
+          $ref: "#/components/responses/InternalServerError"        
+components:
+  schemas:
+    updateAccountAsDormantResponse:
+      type: object
+      properties:
+        accountGuid:
+          type: string
+          format: string
+          description: "\n"
+    createDormantCaseResponse:
+      type: object
+      properties:
+        dormantCaseGuid:
+          type: string
+          format: string
+          description: "\n"
+    paging:
+          type: object
+          properties:
+            pageRowCount:
+              type: string
+              format: string
+              description: "\n"
+            pageNumber:
+              type: string
+              format: string
+              description: "\n"
+    updateDormantCaseResponse:
+      type: object
+      properties:
+        dormantCaseGuid:
+          type: string
+          format: string
+          description: "\n"
+    updateDormantCaseCategoryResponse:
+      type: object
+      properties:
+        dormantCaseGuid:
+          type: string
+          format: string
+          description: "\n"
+    updateCorporateDocumentDoingReKYCResponse:
+      type: object
+      properties:
+        results:
+          type: string
+          format: string
+          description: "\n"
+    updateDormantCaseCategoryAndStatusResponse:
+      type: object
+      properties:
+        dormantCaseGuid:
+          type: string
+          format: string
+          description: "\n"
+    prospectiveCorporate:
+                type: object
+                properties:
+                  prospectiveCorporateGuid:
+                    type: string
+                    format: string
+                    description: "\n"
+                  prospectiveCorporateName:
+                    type: string
+                    format: string
+                    description: "\n"
+    dormantCaseList:
+          type: array
+          items:
+            type: object
+            properties:
+              caseId:
+                type: string
+                format: string
+                description: "\n"
+              dormantAccountId:
+                type: string
+                format: string
+                description: "\n"
+              dormantAccount:
+                type: string
+                format: string
+                description: "\n"
+              caseCategory:
+                type: string
+                format: string
+                description: "\n"
+              caseStatus:
+                type: string
+                format: string
+                description: "\n"
+              caseType:
+                type: string
+                format: string
+                description: "\n"
+              dueDate:
+                type: string
+                format: string
+                description: "\n"
+              task:
+                type: string
+                format: string
+                description: "\n"
+              prospectiveCorporate:
+                $ref: "#/components/schemas/prospectiveCorporate"
+    getDormantCasesResponse:
+      type: object
+      properties:
+        cases:
+          type: string
+          format: string
+          description: "\n"
+        dormantCaseList:
+            $ref: "#/components/schemas/dormantCaseList"
+        totalRecordCount:
+          type: string
+          format: string
+          description: "\n"
+    updateDormantCaseStatusRequest:
+      type: object
+      properties:
+        caseStatus:
+          type: string
+          format: string
+          description: "\n"
+    updateDormantCaseCategoryAndStatusRequest:
+      type: object
+      properties:
+        caseCategory:
+          type: string
+          format: string
+          description: "\n"
+        caseStatus:
+          type: string
+          format: string
+          description: "\n"
+    updateDormantCaseRequest:
+      type: object
+      properties:
+        caseCategory:
+          type: string
+          format: string
+          description: "\n"
+        caseStatus:
+          type: string
+          format: string
+          description: "\n"
+        caseType:
+          type: string
+          format: string
+          description: "\n"
+        customerId:
+          type: string
+          format: string
+          description: "\n"
+        task:
+          type: string
+          format: string
+          description: "\n"
+        dueDate:
+          type: string
+          format: string
+          description: "\n"
+        createdOn:
+          type: string
+          format: string
+          description: "\n"
+    updateCorporateDocumentDoingReKYCRequest:
+      type: object
+      properties:
+        CorporateDocumentList:
+          type: array
+          items:
+            $ref: "#/components/schemas/corporateDocument"
+    corporateDocument:
+        type: object
+        properties:
+          DocumentLink:
+            type: string
+            format: uri
+            description: "\n"
+          DocumentName:
+            type: string
+            format: string
+            description: "\n"
+          FileName:
+            type: string
+            format: string
+            description: "\n" 
+    getDormantCasesRequest:
+      type: object
+      properties:
+        dormantCaseGuid:
+          type: string
+          format: string
+          description: "\n"
+        paging:
+          $ref: "#/components/schemas/paging"
+    createDormantCaseRequest:
+      type: object
+      properties:
+        caseCategory:
+          type: string
+          format: string
+          description: "\n"
+        caseStatus:
+          type: string
+          format: string
+          description: "\n"
+        caseType:
+          type: string
+          format: string
+          description: "\n"
+        customerId:
+          type: string
+          format: string
+          description: "\n"
+        task:
+          type: string
+          format: string
+          description: "\n"
+        dueDate:
+          type: string
+          format: string
+          description: "\n"
+        createdOn:
+          type: string
+          format: string
+          description: "\n"
+    HTTPError:
+      type: object
+      properties:
+        statusCode:
+          type: string
+          description: "\n"
+          format: string
+        status:
+          type: string
+          description: "\n"
+          format: string
+        message:
+          type: string
+          description: "\n"
+          format: string
+  parameters:    
+    customerId:
+      name: customerId
+      in: path
+      required: true
+      schema:
+        type: string 
+    accountNumber:
+      name: accountNumber
+      in: path
+      required: true
+      schema:
+        type: string
+  requestBodies:
+    updateCorporateDocumentDoingReKYCRequest:
+      description: UpdateCorporateDocumentDoingReKYCRequest
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/updateCorporateDocumentDoingReKYCRequest"
+    getDormantCasesRequest:
+      description: GetDormantCasesRequest
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/getDormantCasesRequest"
+    updateDormantCaseCategoryAndStatusRequest:
+      description: UpdateDormantCaseCategoryAndStatusRequest
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/updateDormantCaseCategoryAndStatusRequest"
+    updateDormantCaseStatusRequest:
+      description: UpdateDormantCaseStatusRequest
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/updateDormantCaseStatusRequest"
+    createDormantCaseRequest:
+      description: CreateDormantCaseRequest
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/createDormantCaseRequest"
+    updateDormantCaseRequest:
+      description: UpdateDormantCaseRequest
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/updateDormantCaseRequest"
+  responses:
+    createDormantCaseResponse:
+      description: createDormantCaseResponse
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/createDormantCaseResponse"
+    updateAccountAsDormantResponse:
+      description: updateAccountAsDormantResponse
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/updateAccountAsDormantResponse"
+    updateDormantCaseResponse:
+      description: UpdateDormantCaseResponse
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/updateDormantCaseResponse"
+    updateDormantCaseCategoryResponse:
+      description: UpdateDormantCaseCategoryResponse
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/updateDormantCaseCategoryResponse"
+    updateCorporateDocumentDoingReKYCResponse:
+      description: UpdateCorporateDocumentDoingReKYCResponse
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/updateCorporateDocumentDoingReKYCResponse"
+    updateDormantCaseCategoryAndStatusResponse:
+      description: UpdateDormantCaseCategoryAndStatusResponse
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/updateDormantCaseCategoryAndStatusResponse"
+    getDormantCasesResponse:
+      description: GetDormantCasesResponse
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/getDormantCasesResponse"
+    BadRequest:
+      description: BadRequest
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/HTTPError"
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/HTTPError"
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/HTTPError"
+    NotFound:
+      description: NotFound
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/HTTPError"
+    TooManyRequests:
+      description: TooManyRequests
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/HTTPError"
+    InternalServerError:
+      description: InternalServerError
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/HTTPError"
